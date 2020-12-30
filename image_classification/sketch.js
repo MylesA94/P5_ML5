@@ -12,6 +12,12 @@ function gotResults(error, results) {
     console.error(error);
   } else {
     console.log(results);
+    let label = results[0].label;
+    let probability = results[0].confidence * 100;
+    fill(0);
+    textSize(64);
+    text(label, 10, height - 100);
+    text(`probability: ${probability.toFixed(2)}%`, 10, height - 180);
   }
 }
 
