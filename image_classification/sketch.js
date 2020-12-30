@@ -12,10 +12,13 @@ function gotResults(error, results) {
     console.error(error);
   } else {
     console.log(results);
+    // get label of possible classifications
     let label = results[0].label;
+    // get probability and make percentage for display
     let probability = results[0].confidence * 100;
     fill(0);
     textSize(64);
+    // display classification as well as probability of classification correctness
     text(label, 10, height - 100);
     text(`probability: ${probability.toFixed(2)}%`, 10, height - 180);
   }
