@@ -4,7 +4,7 @@ let detector;
 let detections = [];
 
 function preload() {
-  img = loadImage("penguin_seal.jpg");
+  // img = loadImage("penguin_seal.jpg");
   detector = ml5.objectDetector("cocossd");
 }
 
@@ -43,11 +43,8 @@ function gotDetectionsVideo(error, results) {
 
 function setup() {
   createCanvas(640, 480);
-  //console.log(detector);
-  // image(img, 0, 0);
   video = createCapture(VIDEO);
   video.hide();
-  // detector.detect(img, gotDetections);
   detector.detect(video, gotDetectionsVideo);
 }
 
