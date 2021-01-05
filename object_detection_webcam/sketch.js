@@ -8,10 +8,6 @@ function preload() {
   detector = ml5.objectDetector("cocossd");
 }
 
-// function preloadVideo() {
-//   video = createCapture(VIDEO);
-// }
-
 function gotDetections(error, results) {
   if (error) {
     console.error(error);
