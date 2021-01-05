@@ -31,16 +31,6 @@ function gotDetections(error, results) {
   }
 }
 
-function gotDetectionsVideo(error, results) {
-  if (error) {
-    console.error(error);
-  }
-  detections = results;
-  console.log(results);
-
-  detector.detect(video, gotDetectionsVideo);
-}
-
 function setup() {
   createCanvas(640, 480);
   image(img, 0, 0);
