@@ -1,6 +1,7 @@
 let img;
 let video;
 let detector;
+let detections = [];
 
 function preload() {
   img = loadImage("penguin_seal.jpg");
@@ -34,9 +35,43 @@ function gotDetections(error, results) {
   }
 }
 
+function gotDetectionsVideo(error, results) {
+  if (error) {
+    console.error(error);
+  }
+  detections = results;
+  console.log(results);
+
+  detector.detect(video, gotDetectionsVideo);
+}
+
 function setup() {
   createCanvas(640, 480);
   //console.log(detector);
-  image(img, 0, 0);
-  detector.detect(img, gotDetections);
+  // image(img, 0, 0);
+  video = createCapture(VIDEO);
+  video.hide();
+  // detector.detect(img, gotDetections);
+  detector.detect(video, gotDetectionsVideo);
+}
+
+function draw() {
+  image(video, 0, 0);
+
+  for (let i = 0; i < detections.length; i++) {
+    let object = detections[i];
+    stroke(0, 255, 0);
+    strokeWeight(4);
+    noFill();
+    rect(object.x, object.y, object.width, object.height);
+    noStroke();
+    fill(255);
+    textSize(20);
+    text(object.label, object.x + 10, object.y + 20);
+    text(
+      `${object.confidence.toFixed(2) * 100}%`,
+      object.x + (object.width - 45),
+      object.y + (object.height - 20)
+    );
+  }
 }
