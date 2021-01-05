@@ -7,10 +7,6 @@ function preload() {
   detector = ml5.objectDetector("cocossd");
 }
 
-// function preloadVideo() {
-//   video = createCapture(VIDEO);
-// }
-
 function gotDetections(error, results) {
   if (error) {
     console.error(error);
@@ -36,7 +32,6 @@ function gotDetections(error, results) {
 
 function setup() {
   createCanvas(640, 480);
-  //console.log(detector);
   image(img, 0, 0);
   detector.detect(img, gotDetections);
 }
